@@ -14,3 +14,13 @@ make
 # bash command
 make run
 ```
+## cleaning the compiled files
+```bash
+# bash command
+make clean
+```
+## running valgrind for checking memory errors.
+```bash
+# bash command
+make valgrind
+```
