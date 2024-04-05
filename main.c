@@ -31,11 +31,14 @@ int main(void) {
   printf("Program starting...\nPlease set up the program first.\n");
   for (int i = 0; i < number_of_faculties; i++) {
     int faculty_member_count = MINIMUM_COMMITTEE_MEMBER_COUNT;
+    bool change_faculty;
     do {
       if (faculty_member_count > 0) {
         printf("Please input at least 3 committee member for %s, "
                "remaining: %d\n",
                faculty_names[i], faculty_member_count);
+        // won't let changing faculty before the necessary members.
+        change_faculty = false;
       }
 
       printf("'a': add a new committee member,'A': show current faculty "
@@ -65,12 +68,18 @@ int main(void) {
         break;
       }
 
+      case 'n': {
+        printf("Trying to change to the next faculty");
+        change_faculty = true;
+        break;
+      }
+
       case 'q': {
         printf("ending the program");
         goto end;
       }
       }
-    } while (faculty_member_count > 0);
+    } while (faculty_member_count > 0 && change_faculty == false);
   }
 
   // start accepting the students and scheduling them
